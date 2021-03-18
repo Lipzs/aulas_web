@@ -8,7 +8,7 @@
 <body>
     <h1>Manipulando formulários com PHP</h1>
     <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" method="post">
-        <fieldset>
+        <fieldset> 
             <legend>Novo Usuário</legend>
             Nome: *<br />
             <input type="text" name="nome" /><br />
