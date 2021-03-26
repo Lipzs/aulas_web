@@ -1,0 +1,71 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+  <title>Manipulando formulários com JavaServer Faces</title>
+</h:head>
+<h:body>
+  <h1>Manipulando formulários com JavaServer Faces</h1>
+  <h:form>
+    <fieldset>
+      <legend>Novo Usuário</legend>
+      Nome: *<br />
+      <h:inputText value="#{meuForm.nome}">
+        <f:converter converterId="preProcessaConverter" />
+      </h:inputText><br />
+      E-mail: *<br />
+      <h:inputText value="#{meuForm.email}">
+        <f:converter converterId="preProcessaConverter" />
+      </h:inputText><br />
+      Senha: *<br />
+      <h:inputSecret value="#{meuForm.senha}">
+        <f:converter converterId="preProcessaConverter" />
+        <f:validator validatorId="senhaValidator" />
+        <f:attribute name="confSenha" value="#{confSenha}" />
+      </h:inputSecret><br />
+      Confirmar senha: *<br />
+      <h:inputSecret binding="#{confSenha}" value="#{meuForm.confSenha}">
+        <f:converter converterId="preProcessaConverter" />
+      </h:inputSecret><br />
+      Cidade:<br />
+      <h:selectOneMenu value="#{meuForm.cidade}">
+        <f:selectItem itemValue="-1" itemLabel="--Selecione" />
+        <f:selectItems value="#{meuForm.cidades}" />
+      </h:selectOneMenu><br />
+      Idade:<br />
+      <h:inputText value="#{meuForm.idade}" converterMessage="Idade deve ser um número inteiro maior ou igual a 0." />
+      <br />
+      Comentários:<br />
+      <h:inputTextarea value="#{meuForm.comentarios}" rows="4" cols="30" />
+      <br />
+      Sexo:<br />
+      <h:selectOneRadio value="#{meuForm.sexo}">
+        <f:selectItems value="#{meuForm.sexos}" />
+      </h:selectOneRadio><br />
+      <br />
+      <h:selectBooleanCheckbox value="#{meuForm.termos}" />
+      Concordo com os termos de uso *<br />
+      <hr />
+      <h:commandButton value="Enviar" />
+      <h:commandButton value="Limpar" type="reset" />
+      * Campos obrigatórios
+    </fieldset>
+  </h:form>
+
+  <h:messages />
+  <h2>Dados recebidos:</h2>
+  <ul>
+    <li><b>Nome:</b> #{meuForm.nome}</li>
+    <li><b>E-mail:</b> #{meuForm.email}</li>
+    <li><b>Senha:</b> #{meuForm.senha}</li>
+    <li><b>Confirmar senha:</b> #{meuForm.confSenha}</li>
+    <li><b>Cidade:</b> #{meuForm.cidade}</li>
+    <li><b>Idade:</b> #{meuForm.idade}</li>
+    <li><b>Comentários:</b> #{meuForm.comentarios}</li>
+    <li><b>Sexo:</b> #{meuForm.sexo}</li>
+    <li><b>Termos:</b> #{meuForm.termos}</li>
+  </ul>
+</h:body>
+
+</html>
